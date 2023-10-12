@@ -33,7 +33,9 @@
 	
 	<p> Press the button to create an new element of type div and then add it to the container.</p>
     <button onclick="makeNewDiv()">Add end</button>
-    
+	<button onclick="AddFront()">Add Front</button>
+    <button onclick="Remove()">Remove</button>
+
 </body>
 <script>
 	function makeNewDiv(){
@@ -44,7 +46,21 @@
 
 		let container = document.getElementById('target')
 		container.appendChild(element)
-		
 	}
+    function Remove(){
+        let queueItems = document.getElementsByClassName("merger")
+        let len = queueItems.length;
+        if (len>0){
+            queueItems[0].remove();
+        }
+    }
+    function AddFront(){
+        let element = document.createElement("div")
+		element.innerHTML = document.getElementById('inp1').value;
+		element.style.color = "orange"
+        element.classList.add("merger")
+        let container = document.getElementById('target')
+        container.insertBefore(element,container.firstChild)
+}
 </script>
 </html>	
