@@ -13,23 +13,41 @@
 
   <h2>SriLaxmiSathwika speed check</h2>
  
-  <div>
-    <div id="target">Your time: </div>
-    <div id="counter">Count: </div>
-</div>
-<button id="startTimer">Start Timer</button>
-<button id="reactButton">React</button>
+  <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
 
-<script>
-    
-    let reactTime = undefined;
-    function recordTime() {
-        reactTime = Date.now(); 
-        console.log(reactTime); 
+  <button type="button" class="btn btn-primary" onclick="recordTime()">React</button>
+  
+  
+  <div id="target">Your time </div> 
+  <div id="counter">Count </div> 
+  <script> 
+  let reactTime=undefined;
+  var startCount=8
+  function recordTime(){
+    reactTime=Date.now();
+    console.log(reactTime);
+  }
+  function randomStart(){
+        startCount = Math.floor(Math.random()*(10-2+1)+2)
+        startTime()
     }
-    document.getElementById("reactButton").onclick = recordTime;
+  function startTime(){
+    for(let i=0;i<=startCount;i++){
+        setTimeout(() => { 
+            document.getElementById('counter').innerHTML = "Count: "+i},
+         (startCount-i)*1000)
+    }
+    setTimeout(()=>{
+        if(reactTime==undefined){
+            document.getElementById('target').innerHTML="Too Slow"
+        }
+        else{
+            endTime = Date.now()
+            document.getElementById('target').innerHTML = "Time was "+(endTime-reactTime)
+        }
+    },startCount*1000)
 
-</script>
-
+  }
+  </script>
 </body>
 </html>
